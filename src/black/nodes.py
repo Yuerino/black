@@ -202,8 +202,10 @@ def whitespace(leaf: Leaf, *, complex_subscript: bool) -> str:  # noqa: C901
         return NO
 
     prev = leaf.prev_sibling
+    # print(f'token: {leaf} - parent: {leaf.parent} - parent type {pygram.python_grammar.number2symbol[leaf.parent.type]} - prev_sibling: {prev}')
     if not prev:
         prevp = preceding_leaf(p)
+        # print(f'token: {leaf} - parent: {leaf.parent} - parent type {pygram.python_grammar.number2symbol[leaf.parent.type]} - prevp: {prevp}')
         if not prevp or prevp.type in OPENING_BRACKETS:
             return NO
 
@@ -238,6 +240,29 @@ def whitespace(leaf: Leaf, *, complex_subscript: bool) -> str:  # noqa: C901
             and parent_type(prevp.parent) == syms.subscriptlist
         ):
             # No space between typevar tuples.
+            return NO
+
+        elif (
+            p.type == syms.factor
+            and prevp.type in {token.STAR, token.SLASH}
+        ):
+            # no space between factor number and *
+            return NO
+
+        elif (
+            t == token.LPAR
+            and prevp.type in {token.STAR, token.SLASH}
+        ):
+            # no space between ( and *
+            return NO
+
+        elif (
+            p.type == syms.power
+            and p.children
+            and p.children[0].type == token.NAME
+            and prevp.type in {token.STAR, token.SLASH}
+        ):
+            # no space between dotted-name and *
             return NO
 
         elif prevp.type in VARARGS_SPECIALS:
@@ -401,6 +426,17 @@ def whitespace(leaf: Leaf, *, complex_subscript: bool) -> str:  # noqa: C901
     elif p.type == syms.except_clause:
         if t == token.STAR:
             return NO
+
+    elif t in {token.STAR, token.SLASH}:
+        return NO
+
+    elif (
+        p.type == syms.term
+        and prev
+        and prev.type in {token.STAR, token.SLASH}
+    ):
+        # no space between number and *
+        return NO
 
     return SPACE
 

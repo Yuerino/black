@@ -19,8 +19,8 @@
  1 % finished
 -1 + v2 - v3 * 4 ^ 5 ** v6 / 7 // 8
 -((1 + v2) - (v3 * 4)) ^ (((5 ** v6) / 7) // 8)
-+1 + v2 - v3 * 4 ^ 5**v6 / 7 // 8
-+((1 + v2) - (v3 * 4)) ^ (((5**v6) / 7) // 8)
++1 + v2 - v3*4 ^ 5**v6/7 // 8
++((1 + v2) - (v3*4)) ^ (((5**v6)/7) // 8)
  not great
  ~great
  +value
@@ -113,10 +113,12 @@
 +[((i**2) + j) for i in (1, 2, 3) for j in (1, 2, 3)]
  {i: 0 for i in (1, 2, 3)}
 -{i: j for i, j in ((1, 'a'), (2, 'b'), (3, 'c'))}
-+{i: j for i, j in ((1, "a"), (2, "b"), (3, "c"))}
- {a: b * 2 for a, b in dictionary.items()}
- {a: b * -2 for a, b in dictionary.items()}
+-{a: b * 2 for a, b in dictionary.items()}
+-{a: b * -2 for a, b in dictionary.items()}
 -{k: v for k, v in this_is_a_very_long_variable_which_will_cause_a_trailing_comma_which_breaks_the_comprehension}
++{i: j for i, j in ((1, "a"), (2, "b"), (3, "c"))}
++{a: b*2 for a, b in dictionary.items()}
++{a: b*-2 for a, b in dictionary.items()}
 +{
 +    k: v
 +    for k, v in this_is_a_very_long_variable_which_will_cause_a_trailing_comma_which_breaks_the_comprehension
@@ -254,13 +256,17 @@
  Ø = set()
  authors.łukasz.say_thanks()
  mapping = {
-     A: 0.25 * (10.0 / 12),
-     B: 0.1 * (10.0 / 12),
-     C: 0.1 * (10.0 / 12),
-     D: 0.1 * (10.0 / 12),
+-    A: 0.25 * (10.0 / 12),
+-    B: 0.1 * (10.0 / 12),
+-    C: 0.1 * (10.0 / 12),
+-    D: 0.1 * (10.0 / 12),
++    A: 0.25*(10.0/12),
++    B: 0.1*(10.0/12),
++    C: 0.1*(10.0/12),
++    D: 0.1*(10.0/12),
  }
- 
 +
+
  def gen():
      yield from outside_of_generator
 -    a = (yield)
@@ -412,21 +418,21 @@
 +    return True
 +if (
 +    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-+    * aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
++    *aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 +):
 +    return True
 +if (
 +    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-+    / aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
++    /aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 +):
 +    return True
 +if (
-+    ~aaaa.a + aaaa.b - aaaa.c * aaaa.d / aaaa.e
++    ~aaaa.a + aaaa.b - aaaa.c*aaaa.d/aaaa.e
 +    | aaaa.f & aaaa.g % aaaa.h ^ aaaa.i << aaaa.k >> aaaa.l**aaaa.m // aaaa.n
 +):
 +    return True
 +if (
-+    ~aaaaaaaa.a + aaaaaaaa.b - aaaaaaaa.c @ aaaaaaaa.d / aaaaaaaa.e
++    ~aaaaaaaa.a + aaaaaaaa.b - aaaaaaaa.c @ aaaaaaaa.d/aaaaaaaa.e
 +    | aaaaaaaa.f & aaaaaaaa.g % aaaaaaaa.h
 +    ^ aaaaaaaa.i << aaaaaaaa.k >> aaaaaaaa.l**aaaaaaaa.m // aaaaaaaa.n
 +):
@@ -434,7 +440,7 @@
 +if (
 +    ~aaaaaaaaaaaaaaaa.a
 +    + aaaaaaaaaaaaaaaa.b
-+    - aaaaaaaaaaaaaaaa.c * aaaaaaaaaaaaaaaa.d @ aaaaaaaaaaaaaaaa.e
++    - aaaaaaaaaaaaaaaa.c*aaaaaaaaaaaaaaaa.d @ aaaaaaaaaaaaaaaa.e
 +    | aaaaaaaaaaaaaaaa.f & aaaaaaaaaaaaaaaa.g % aaaaaaaaaaaaaaaa.h
 +    ^ aaaaaaaaaaaaaaaa.i
 +    << aaaaaaaaaaaaaaaa.k
@@ -445,8 +451,8 @@
 +    aaaaaaaaaaaaaaaa
 +    + aaaaaaaaaaaaaaaa
 +    - aaaaaaaaaaaaaaaa
-+    * (aaaaaaaaaaaaaaaa + aaaaaaaaaaaaaaaa)
-+    / (aaaaaaaaaaaaaaaa + aaaaaaaaaaaaaaaa + aaaaaaaaaaaaaaaa)
++    *(aaaaaaaaaaaaaaaa + aaaaaaaaaaaaaaaa)
++    /(aaaaaaaaaaaaaaaa + aaaaaaaaaaaaaaaa + aaaaaaaaaaaaaaaa)
 +)
  aaaaaaaaaaaaaaaa + aaaaaaaaaaaaaaaa
 -aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa >> aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa << aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -455,7 +461,7 @@
 +    >> aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 +    << aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 +)
- bbbb >> bbbb * bbbb
+ bbbb >> bbbb*bbbb
 -aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa ^bbbb.a & aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa^aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 +(
 +    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
